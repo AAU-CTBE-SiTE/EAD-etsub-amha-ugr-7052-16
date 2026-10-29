@@ -4,7 +4,21 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
                            https://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <!-- Instructs Spring to create and manage an instance of RegularStudent -->
-    <bean id="student" class="com.craft.RegularStudent"/>
+    <!-- 1. Address Bean (Object Dependency) -->
+    <bean id="address" class="com.craft.Address">
+        <property name="city" value="Addis"/>
+        <property name="country" value="Ethiopia"/>
+    </bean>
+
+    <!-- 2. Student Bean showcasing Setter & Literal Injection + Singleton Scope -->
+    <bean id="student" class="com.craft.Student" scope="singleton">
+        <property name="id" value="101"/>
+        <property name="name" value="John Doe"/>
+        <property name="age" value="20"/>
+        <property name="city" value="Addis"/>
+        <property name="country" value="Ethiopia"/>
+        <!-- Injecting the Address object bean using 'ref' -->
+        <property name="address" ref="address"/>
+    </bean>
 
 </beans>
