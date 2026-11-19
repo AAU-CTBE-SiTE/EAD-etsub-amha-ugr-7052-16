@@ -3,7 +3,7 @@ package com.site.crudapi.controller;
 import com.site.crudapi.model.Student;
 import com.site.crudapi.service.StudentService;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.annotation.PathVariable;
+
 import java.util.List;
 
 @RestController
@@ -26,10 +26,14 @@ public class StudentController {
         return studentService.getAllStudents();
     }
 
-    // 3. Retrieve a single student by ID
     @GetMapping("/{id}")
     public Student getStudentById(@PathVariable Long id) {
         return studentService.getStudentById(id);
+    }
+
+    @GetMapping("/department/{department}")
+    public List<Student> getStudentsByDepartment(@PathVariable String department) {
+        return studentService.getStudentsByDepartment(department);
     }
 
     @PutMapping("/{id}")
